@@ -20,3 +20,13 @@ after_script:
 before_deploy:
 - find uw_catalyst/ -name \*.pyc -exec rm {} \;
 - echo $TRAVIS_TAG > uw_catalyst/VERSION
+deploy:
+  provider: pypi
+  server: https://pypi.python.org/pypi
+  user: uw-it-aca
+  skip_cleanup: true
+  password:
+    secure:
+  on:
+    tags: true
+    condition: "$TRAVIS_PYTHON_VERSION = '3.5'"
