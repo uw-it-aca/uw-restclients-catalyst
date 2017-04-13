@@ -27,7 +27,7 @@ setup(
                       'mock',
                      ],
     license='Apache License, Version 2.0',
-    description=('A library for connecting to the Catalyst REST API'),
+    description=('A library for connecting to the UW Catalyst REST API'),
     long_description=README,
     url='https://github.com/uw-it-aca/uw-restclients-catalyst',
     classifiers=[

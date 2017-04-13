@@ -33,7 +33,7 @@ class Catalyst_DAO(DAO):
             now_with_tz = datetime.now(pytz.utc).strftime(
                 "%a %b %d %H:%M:%S %Z %Y")
             header_base = "%s\nGET\n%s\n%s\n" % (private_key, url, now_with_tz)
-            hashed = hashlib.sha1(header_base).hexdigest()
+            hashed = hashlib.sha1(header_base.encode("utf-8")).hexdigest()
             public_key = self.get_service_setting("SOL_AUTH_PUBLIC_KEY")
 
             return {"Authorization": "SolAuth %s:%s" % (public_key, hashed),
