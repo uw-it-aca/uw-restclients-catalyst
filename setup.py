@@ -22,7 +22,7 @@ setup(
     author_email="aca-it@uw.edu",
     include_package_data=True,
     install_requires=['UW-RestClients-Core>0.8.2,<1.0',
-                      'UW-RestClients-SWS>=0.5.3,<1.0',
+                      'UW-RestClients-SWS>=1.0,<2.0',
                       'UW-RestClients-PWS>=0.5,<1.0',
                       'mock',
                      ],
