@@ -1,19 +1,16 @@
 sudo: false
 language: python
 python:
-- '2.7'
-- '3.4'
-- '3.5'
 - '3.6'
 before_script:
 - pip install -e .
-- pip install pep8
+- pip install pycodestyle
 - pip install nose2
 - pip install coverage
 - pip install commonconf
 - pip install python-coveralls
 script:
-- pep8 --exclude=uw_catalyst/tests uw_catalyst
+- pycodestyle uw_catalyst/
 - coverage run uw_catalyst/test.py -v
 after_script:
 - coveralls
@@ -22,11 +19,10 @@ before_deploy:
 - echo $TRAVIS_TAG > uw_catalyst/VERSION
 deploy:
   provider: pypi
-  server: https://pypi.python.org/pypi
   user: uw-it-aca
   skip_cleanup: true
   password:
     secure: OdPHNh+57NdwsfZn1LKbSKYkoKTy4X3HMDIsmqy3XpVcRXpJvKdvVqCb3fYhhepFvD9cFdcVD8JO9BSRWoQ+GR/ki0SipxnQQO1bBSeYcdPROV4D1GWOHIPNkCNcFSPd4yGhKrVuoUbmy0gwP8DY8xTCz/0rg99FDw9qoPOfXwr9bXmPZ9FgLlSMUfahR9xX1ylAg+auR2yL3ZkidiWxErSwjnjGCMc2JhxVcl+gYGu/jytKjeHN8n7ZaFnKdzunJT8AxfdBZxS7UOkfqC1jiRxeKnSgYVex+CWTpbbpG6SSmoK9ea4XFz/XoyW6IZ/x4m0ivDzGv86Xnh4T4T1P3ep3Q3Xv9tMavXNMDy6YgpfnnCRwQVkvCvtINKDW9P2/6AWYjqhlJ/K4/G8TcwC1seu0idi5glQ93rlK9pYRwmNiHp3r6Clh6PmwGsUdLtK7dH7XcvwIf1EbmGk2Mcvxaemsn1Og+7V4RIamzF1trQoMC2qDIuMykOcuog1uDxhDRaoR2kTtkW90YxVYaPRq+55s2mELRhao7MDG+1c7BRB8OLqw2PH9PZY5sY2iaJTMm7UboS6jONDfkds5dw35ZCbdcvjEEPE3JXnC9D+AUwDtzTokWD6bB8Tecd+m3aIYyP85/kmHeI9F1nmebdY9N7O1C83FPyCry2y6ETVY0D8=
   on:
     tags: true
-    condition: "$TRAVIS_PYTHON_VERSION = '3.5'"
+    python: '3.6'
