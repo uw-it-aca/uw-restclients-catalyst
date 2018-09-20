@@ -16,7 +16,7 @@ def get_participants_for_gradebook(gradebook_id, person=None):
     if not valid_gradebook_id(gradebook_id):
         raise InvalidGradebookID(gradebook_id)
 
-    url = "/rest/gradebook/v1/book/%s/participants" % gradebook_id
+    url = "/rest/gradebook/v1/book/{}/participants".format(gradebook_id)
     headers = {}
 
     if person is not None:
@@ -36,7 +36,7 @@ def get_participants_for_section(section, person=None):
     Returns a list of gradebook participants for the passed section and person.
     """
     section_label = encode_section_label(section.section_label())
-    url = "/rest/gradebook/v1/section/%s/participants" % section_label
+    url = "/rest/gradebook/v1/section/{}/participants".format(section_label)
     headers = {}
 
     if person is not None:
@@ -52,7 +52,9 @@ def get_participants_for_section(section, person=None):
 
 
 def valid_gradebook_id(gradebook_id):
-    return True if re.match(r"^[1-9][0-9]{,9}$", str(gradebook_id)) else False
+    if re.match(r"^[1-9][0-9]{,9}$", str(gradebook_id)):
+        return True
+    return False
 
 
 def _participant_from_json(data):
