@@ -1,10 +1,6 @@
 from uw_catalyst.dao import Catalyst_DAO
 from uw_sws import encode_section_label
 from restclients_core.exceptions import DataFailureException
-try:
-    from urllib.parse import quote
-except ImportError:
-    from urllib import quote
 import json
 
 
